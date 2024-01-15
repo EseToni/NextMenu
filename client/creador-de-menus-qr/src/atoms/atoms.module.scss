@@ -20,3 +20,57 @@
         }
     }
 }
+
+.mainPopover {
+    border-radius: 50%;
+    border: 1px solid #000000;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 30px;
+    height: 30px;
+
+    cursor: default;
+
+    > div {
+        position: absolute;
+        top: 100%;
+        right: 50%;
+        left: 50%;
+        margin-top: 10px;
+        transform: translateX(-50%);
+        background-color: black;
+        width: 200px;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+
+        animation: showPopover 0.3s ease-in forwards;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            width: 15px;
+            height: 10px;
+            background-color: black;
+        }
+        > p {
+            color: white;
+        }
+    }
+
+    @keyframes showPopover {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
