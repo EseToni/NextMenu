@@ -1,0 +1,77 @@
+.mainAvatarNav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.25rem;
+    position: relative;
+
+    cursor: pointer;
+
+    >img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    >p{
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
+
+.mainAvatarDropDown{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    top: 100%;
+    right: 0;
+
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+    cursor: default;
+
+    >div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+        width: max-content;
+        padding: 0.5rem 1rem;
+
+        >img{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+    }
+
+    >section{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0rem 1rem;
+
+        >h3{
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        >h4{
+            font-size: 1rem;
+            font-weight: 400;
+        }
+    }
+
+    >button{
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        border: none;
+        width: max-content;
+        cursor: pointer;
+        color: red;
+        font-size: 1rem;
+    }
+
+}

@@ -4,6 +4,11 @@ import Link from "next/link";
 
 import styles from "./navbar-menu.module.scss";
 
+import { SessionProviderCustom } from "@/common/providers/SessionProviderCustom";
+import AvatarNav from "../avatar-menu/AvatarNav";
+
+console.log("NavBarMenu");
+
 const NavBarMenu = () => {
   return (
     <nav className={styles.mainNavBarMenu}>
@@ -17,7 +22,7 @@ const NavBarMenu = () => {
           </div>
         </Link>
 
-        <Link href="/dashboard">
+        <Link href="/dashboard/qr">
           <div>
             <h4>X</h4>
             <h3>Codigo QR</h3>
@@ -41,9 +46,12 @@ const NavBarMenu = () => {
 
       <div>
         <h3>Mejora tu plan</h3>
+        <SessionProviderCustom>
+          <AvatarNav />
+        </SessionProviderCustom>
       </div>
     </nav>
   );
 };
 
-export default NavBarMenu;
+export default React.memo(NavBarMenu);
