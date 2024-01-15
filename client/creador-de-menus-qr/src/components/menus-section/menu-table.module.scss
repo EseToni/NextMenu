@@ -1,0 +1,38 @@
+.mainMenuTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    border: solid 1px grey;
+
+    padding: 1rem 0rem;
+
+    .menuTableInfo {
+        display: grid;
+        grid-template-columns: auto auto 200px auto auto;
+        gap: 1rem;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0rem 4rem 0rem 2rem;
+
+        > div {
+            display: flex;
+            flex-direction: row;
+            gap: 4rem;
+            align-items: center;
+        }
+        h4 {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+    }
+
+    > hr {
+        width: 100%;
+        border: 1px solid grey;
+    }
+}

@@ -1,0 +1,49 @@
+
+.introMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    gap: 2rem;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    h1{
+        font-size: 4rem;
+        font-weight: 700;
+        width: 70%;
+    }
+    h2{
+        font-size: 1.5rem;
+        font-weight: 400;
+        width: 50%;
+    }
+    div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        button{
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            background-color: #1E90FF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover{
+                background-color: #4169E1;
+            }
+        }
+    }
+    section{
+        width: 80%;
+        height: 500px;
+        border-radius: 2rem;
+        background-color: #1ea9ff;
+    }
+}

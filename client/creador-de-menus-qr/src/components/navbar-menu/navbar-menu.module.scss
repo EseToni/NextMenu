@@ -1,0 +1,65 @@
+@keyframes blur {
+    to {
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0 0 0 1px rgb(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+}
+
+.mainNavBarMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    width: 100%;
+    position: fixed;
+    animation: blur linear both;
+    animation-timeline: scroll();
+    animation-range: 0 500px;
+
+    background-color: white;
+    z-index: 1000;
+
+    > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+
+
+        a {
+            text-decoration: none;
+            color: black;
+            
+            >div {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+    
+                cursor: pointer;
+    
+                > h3 {
+                    font-size: 1rem;
+                    font-weight: 300;
+                }
+            }
+        }
+
+        // div {
+        //     display: flex;
+        //     flex-direction: column;
+        //     justify-content: space-between;
+        //     align-items: center;
+
+        //     cursor: pointer;
+
+        //     > h3 {
+        //         font-size: 1rem;
+        //         font-weight: 300;
+        //     }
+        // }
+    }
+}

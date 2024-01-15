@@ -1,0 +1,15 @@
+.mainMenuItem{
+    display: grid;
+    grid-template-columns: auto auto 200px auto auto;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0rem 4rem 0rem 2rem;
+
+    >div{
+        display: flex;
+        flex-direction: row;
+        gap: 4rem;
+        align-items: center;
+    }
+}

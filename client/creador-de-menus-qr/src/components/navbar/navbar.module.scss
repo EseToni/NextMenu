@@ -1,0 +1,57 @@
+@keyframes blur {
+    to {
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0 0 0 1px rgb(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+}
+
+
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    width: 100%;
+    position: fixed;
+    animation: blur linear both;
+    animation-timeline: scroll();
+    animation-range:0 500px;
+
+    z-index: 1000;
+
+    div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .children{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        h3{
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+        button{
+            background-color: transparent;
+            border: 1px solid grey;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            &:hover{
+                background-color: rgb(179, 179, 179);
+            }
+        }
+    }
+}
+
