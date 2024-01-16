@@ -3,6 +3,20 @@ import MenusModel from "../models/mongoose/menus.ts";
 import { MenusTypes, Categories, Dishes } from "../types/menuTypes.ts";
 
 class Logic {
+    
+  static getRestaurant = async (_id: string) => {
+    const restaurant = await MenusModel.findById(_id);
+    return restaurant;
+  };
+
+  static getMenus = async (_id: string, nameMenu?: string) => {
+    const restaurant = await MenusModel.findOne({
+      _id,
+      "menus.nameMenu": nameMenu,
+    });
+    return restaurant;
+  };
+
   static createRestaurant = async ({
     owner,
     imageRestaurant,
@@ -57,32 +71,32 @@ class Logic {
     return restaurant;
   };
 
-static createDish = async (
+  static createDish = async (
     _id: string,
     nameMenu: string,
     nameCategory: string,
     body: Dishes
-) => {
+  ) => {
     const restaurant = await MenusModel.findOneAndUpdate(
-        {
-            _id,
-            "menus.nameMenu": nameMenu,
+      {
+        _id,
+        "menus.nameMenu": nameMenu,
+      },
+      {
+        $push: {
+          "menus.$[menu].categories.$[category].dishes": body,
         },
-        {
-            $push: {
-                "menus.$[menu].categories.$[category].dishes": body,
-            },
-        },
-        {
-            new: true,
-            arrayFilters: [
-                { "menu.nameMenu": nameMenu },
-                { "category.nameCategory": nameCategory },
-            ],
-        }
+      },
+      {
+        new: true,
+        arrayFilters: [
+          { "menu.nameMenu": nameMenu },
+          { "category.nameCategory": nameCategory },
+        ],
+      }
     );
     return restaurant;
-};
+  };
 }
 
 export default Logic;
