@@ -18,10 +18,16 @@ const Menus = () => {
           </div>
         </div>
         <hr />
-        <MenuTable>
+        <MenuTable >
           <MenuItem
             name="Menu 1"
             dishes={5}
+            availability="Todos los días"
+            visibility={true}
+          />
+          <MenuItem
+            name="Menu 2"
+            dishes={2}
             availability="Todos los días"
             visibility={true}
           />

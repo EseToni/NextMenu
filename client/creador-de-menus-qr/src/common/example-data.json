@@ -1,0 +1,32 @@
+{
+  "_id": "12003123",
+  "owner": "owner@gmail.com",
+  "associates": ["ejemplo@gmail.com", "example@gmail.com"],
+  "nameRestaurant": "restaurantName",
+  "menus": [
+    {
+      "id": "12003123",
+      "nameMenu": "menuName",
+      "availability": "l,m,x,j,v,s,d",
+      "visibility": true,
+      "dishes": 5,
+      "categories": [
+        {
+          "nameCategory": "bebidas",
+          "description": "bebidas jujuuju ji pooolasss",
+          "dishes": [
+            {
+              "nameDish": "coca cola",
+              "description": "coca cola fresquitaas",
+              "price": 1.5,
+              "avaliable": true,
+              "image": "http://www.cocacola.es/content/dam/GO/CokeZone/Common/Icons/Icon_Coca-Cola.png",
+              "labels": ["picante", "sin gluten", "vegano"],
+              "allergens": ["gluten", "lactosa", "frutos secos"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

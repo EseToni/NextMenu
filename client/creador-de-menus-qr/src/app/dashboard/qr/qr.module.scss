@@ -4,6 +4,33 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding: 1rem 6rem;
+    gap: 2rem;
 
-    margin-top: 8rem;
+    margin-top: 6rem;
+
+    .infoQR{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+
+    }
+
+    > hr {
+        width: 100%;
+        border: 1px solid #000;
+    }
+
+    .sectionQR{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+
+    }
 }

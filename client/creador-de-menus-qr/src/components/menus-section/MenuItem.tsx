@@ -9,7 +9,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   visibility,
 }) => {
   return (
-    <div className={styles.mainMenuItem}>
+    <div className={styles.mainMenuItem} >
       <h4>{name}</h4>
       <button>Editar</button>
       <div>
