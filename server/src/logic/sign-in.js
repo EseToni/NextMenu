@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const { UsersModel } = require("../models");
+import UsersModel from "../models/mongoose/users.js";
+import jwt from "jsonwebtoken";
 
 const loginUserLogic = async (email, password) => {
   try {
@@ -29,4 +29,4 @@ const loginUserLogic = async (email, password) => {
   }
 };
 
-module.exports = { loginUserLogic };
+export { loginUserLogic };

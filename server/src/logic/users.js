@@ -1,5 +1,5 @@
-const { UsersModel } = require("../models");
-const bcrypt = require("bcrypt");
+import UsersModel from "../models/mongoose/users.js";
+import bcrypt from "bcrypt";
 
 const postUserLogic = async (data) => {
   const originalPassword = data.password;
@@ -28,6 +28,4 @@ const postUserLogic = async (data) => {
   } else throw Error("Data missing");
 };
 
-module.exports = {
-  postUserLogic,
-};
+export { postUserLogic };

@@ -1,5 +1,5 @@
-require("dotenv").config();
-const mongoose = require("mongoose");
+import "dotenv/config.js";
+import { connect } from "mongoose";
 // const { buildURI } = require("../../../utils/dbBuildURI");
 
 const database = process.env.MONGO_DATABASE;
@@ -12,7 +12,7 @@ const mongoConnect = async () => {
   // const options = { useNewUrlParser: true };
 
   try {
-    await mongoose.connect(uri);
+    await connect(uri);
     console.log("*** MONGO DB CONNECTED. ***\n");
   } catch (error) {
     console.log("*** MONGO DB CONEXION ERROR ***\n");
@@ -20,4 +20,4 @@ const mongoConnect = async () => {
   }
 };
 
-module.exports = { dbConnect: mongoConnect };
+export default mongoConnect;

@@ -10,4 +10,4 @@ const catchedAsync = (fn, errorHandler) => async (req, res, next) => {
     }
 };
 
-module.exports = catchedAsync;
+export default catchedAsync;

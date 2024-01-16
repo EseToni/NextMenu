@@ -1,4 +1,4 @@
-require('dotenv').config()
+import "dotenv/config.js";
 
 let path = ''
 const modeEnv = process.env.MODE
@@ -13,11 +13,9 @@ const allMessage = `\n${message}:\n=> ${path}\n`
 
 
 // LISTEN
-const listen = (app, cb= ()=>null) => {
+export const listen = (app, cb= ()=>null) => {
   app.listen(port, () => {
     console.log(allMessage)
     cb()
   })
 }
-
-module.exports = listen

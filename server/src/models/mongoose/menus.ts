@@ -1,41 +1,13 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+
+import { MenusModelTypes, MenusTypes } from "../../types/menuTypes.ts";
 
 const config = {
   timestamps: false, // createAt, updateAt
   versionKey: false,
 };
 
-interface Menus {
-  id: number;
-  nameMenu: string;
-  description: string;
-  available: boolean;
-  avaliableDays: Array<String>;
-  dishes: number;
-  categories: Array<Categories>;
-}
-
-interface Categories {
-  nameCategory: string;
-  description: string;
-  dishes: Array<Dishes>;
-}
-
-interface Dishes {
-  nameDish: string;
-  description: string;
-  price: number;
-  available: boolean;
-  image: string;
-  labels: ["vegetarian", "vegan", "gluten-free", "lactose-free"];
-  allergens: ["gluten", "lactose", "egg", "fish", "shellfish", "peanuts"];
-}
-
-const schema = {
-  _id: {
-    type: Number,
-    required: true,
-  },
+const scheme = {
   owner: {
     type: String,
     required: true,
@@ -44,17 +16,112 @@ const schema = {
     type: String,
     required: true,
   },
+  imageRestaurant: {
+    type: String,
+    required: false,
+  },
   associates: {
-    type: Array<String>,
+    type: [String],
     required: false,
   },
   menus: {
-    type: Array<Menus>,
-    required: true,
+    type: [
+      {
+        nameMenu: {
+          type: String,
+          required: true,
+        },
+        description: {
+          type: String,
+          required: false,
+        },
+        available: {
+          type: Boolean,
+          required: false,
+          default: true,
+        },
+        avaliableDays: {
+          type: [String],
+          required: false,
+          default: [
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday",
+          ],
+        },
+        dishes: {
+          type: Number,
+          required: false,
+          default: 0,
+        },
+        categories: {
+          type: [
+            {
+              nameCategory: {
+                type: String,
+                required: true,
+                unique: true,
+              },
+              description: {
+                type: String,
+                required: false,
+              },
+              dishes: {
+                type: [
+                  {
+                    nameDish: {
+                      type: String,
+                      required: true,
+                      unique: true,
+                    },
+                    description: {
+                      type: String,
+                      required: false,
+                    },
+                    price: {
+                      type: Number,
+                      required: true,
+                    },
+                    available: {
+                      type: Boolean,
+                      required: true,
+                    },
+                    image: {
+                      type: String,
+                      required: false,
+                    },
+                    labels: {
+                      type: [String],
+                      required: false,
+                    },
+                    allergens: {
+                      type: [String],
+                      required: false,
+                    },
+                  },
+                ],
+                required: false,
+              },
+            },
+          ],
+          required: false,
+        },
+      },
+    ], // Use MenusTypes as a value
+    required: false,
   },
 };
 
-const MenuScheme = new mongoose.Schema(schema, config);
+
+
+const MenuScheme = new mongoose.Schema<MenusModelTypes>(
+  scheme,
+  config
+);
 
 MenuScheme.static("findAllData", function () {
   return this.find({});
@@ -69,6 +136,7 @@ MenuScheme.static("removeData", function (_id) {
   return this.deleteOne({ _id });
 });
 
-const MenusModel = mongoose.model("users", MenuScheme);
+const MenusModel = mongoose.model("menus", MenuScheme);
 
-module.exports = MenusModel;
+
+export default MenusModel;

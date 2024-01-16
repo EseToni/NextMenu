@@ -1,20 +1,28 @@
-const express = require("express");
-const fs = require("fs");
+import express from "express";
+import fs from "fs";
+
 const router = express.Router();
 
-const PATH_ROUTES = __dirname;
+import { readdirSync } from "fs"; // Usamos fs/promises para las funciones asincrónicas
+import { join } from "path";
 
-console.log(PATH_ROUTES);
-fs.readdirSync(PATH_ROUTES).filter((file) => {
+const PATH_ROUTES = new URL(".", import.meta.url).pathname;
+
+console.log('---------------------->',PATH_ROUTES.split("").splice(1).join(""));
+
+const files = await readdirSync(PATH_ROUTES.split("").splice(1).join(""));
+
+for (const file of files) {
   // items.js => items
   const name = file.split(".").shift();
 
   if (name !== "index") {
     // http://localhost/api/items
-    router.use(`/${name}`, require(`./${file}`));
+    const module = await import(`./${file}`);
+    router.use(`/${name}`, module.default); // Asumiendo que cada módulo exporta por defecto un middleware para el enrutamiento
   }
-});
+}
 
 // router.use(`/users`, require(`./users`))
 
-module.exports = router;
+export default router;

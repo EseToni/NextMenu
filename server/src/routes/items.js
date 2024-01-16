@@ -1,7 +1,6 @@
-const express = require("express");
-const router = express.Router();
+import express from "express";
 
-const { ItemsModel } = require("../models");
+const router = express.Router();
 
 // route => /breeds/...
 
@@ -11,4 +10,4 @@ router.get("/", (_, res) => {
   });
 });
 
-module.exports = router;
+export default router;

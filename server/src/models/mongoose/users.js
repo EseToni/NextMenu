@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const config = {
   timestamps: true, // createAt, updateAt
@@ -67,4 +67,4 @@ UsersModel.prototype.comparePassword = async function (password) {
   return pass;
 };
 
-module.exports = UsersModel;
+export default UsersModel;

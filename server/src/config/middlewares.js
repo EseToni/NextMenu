@@ -1,6 +1,7 @@
 // const cors = require("cors")
-const express = require("express");
-const morgan = require("morgan");
+
+import express from "express";
+import morgan from "morgan";
 
 // MIDDLEWARES
 const middlewares = (app) => {
@@ -24,4 +25,4 @@ const middlewares = (app) => {
   //   app.use("/pictures/", express.static(__dirname + "./../storage"));
 };
 
-module.exports = middlewares;
+export default middlewares;

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const name = "items";
 const config = {
@@ -58,4 +58,4 @@ exameple
     console.error(err);
   });
 
-module.exports = ItemsModel;
+export default ItemsModel;
