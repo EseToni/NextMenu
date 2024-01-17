@@ -1,0 +1,29 @@
+.containerOverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .containerModal{
+        position: absolute;
+        top: 50%; /* Ajusta verticalmente */
+        left: 50%; /* Ajusta horizontalmente */
+        transform: translate(-50%, -50%);
+        width: max-content;
+        height: max-content;
+
+        .buttonClose {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin: 0.5rem 0.5rem 0 0;
+        }
+    }
+}

@@ -5,6 +5,7 @@ import styles from "./menus.module.scss";
 import Dashborad from "../page";
 import MenuTable from "@/components/menus-section/MenuTable";
 import MenuItem from "@/components/menus-section/MenuItem";
+import ButtonNewMenu from "@/components/buttons/ButtonNewMenu";
 
 const Menus = () => {
   const MOCKDATA = [
@@ -31,7 +32,7 @@ const Menus = () => {
           <h2>Menus</h2>
           <div>
             <button>Ver menu</button>
-            <button>Nuevo menú</button>
+            <ButtonNewMenu />
           </div>
         </div>
         <hr />

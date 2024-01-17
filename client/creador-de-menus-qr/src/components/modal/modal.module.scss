@@ -1,0 +1,47 @@
+.mainModalNewMenu{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    gap: 2rem;
+
+    background-color: white;
+    padding: 1.25rem 2rem;
+    border-radius: 5px;
+
+    >h2{
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    >label{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        gap: 0.5rem;
+
+        >input{
+            width: 30rem;
+            height: 2rem;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    }
+
+    >button{
+        align-self: flex-end;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: #2ecc71;
+        color: white;
+        font-size: 1rem;
+        font-weight: 400;
+        cursor: pointer;
+    }
+}
