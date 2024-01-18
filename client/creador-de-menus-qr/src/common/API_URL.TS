@@ -2,7 +2,13 @@
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api/";
 
-export const API_URL_MENU = API_URL + "menu/";
+const API_URL_USERS = API_URL + "users/";
+
+export const API_URL_REGISTER = API_URL_USERS + "register/";
+
+export const API_URL_LOGIN = API_URL_USERS + "login/";
+
+export const API_URL_MENU = API_URL + "menus/";
 
 export const API_URL_MENU_CATEGORY = API_URL_MENU + "category/";
 

@@ -23,7 +23,13 @@ const loginUserLogic = async (email, password) => {
       expiresIn: "24h",
     });
 
-    return { token, userId: user.id, success: "Inicio de sesión exitoso" };
+    return {
+      token,
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      success: "Inicio de sesión exitoso",
+    };
   } catch (error) {
     return { error: "Error en el servidor al procesar la solicitud" };
   }

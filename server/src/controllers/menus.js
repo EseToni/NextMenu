@@ -3,15 +3,43 @@ import Logic from "../logic/menu.ts";
 import catchedAsync from "../utils/catchedAsync.js";
 
 class Controller {
-  static createRestaurant = catchedAsync(async (req, res) => {
-    const { owner, imageRestaurant, nameRestaurant } = req.body;
+  static getRestaurant = catchedAsync(async (req, res) => {
+    const { id } = req.params;
 
-    if (!owner || !nameRestaurant) {
-      throw new Error("owner and nameRestaurant is required");
+    if (!id) {
+      throw new Error("id is required");
+    }
+
+    const restaurant = await Logic.getRestaurant(id);
+
+    res.status(200).json(restaurant);
+  });
+
+  static getMenu = catchedAsync(async (req, res) => {
+    const { id } = req.params;
+
+    const { idMenu } = req.body;
+
+    if (!id) {
+      throw new Error("id is required");
+    } else if (!idMenu) {
+      throw new Error("idMenu is required");
+    }
+
+    const menu = await Logic.getMenu(id, idMenu);
+
+    res.status(200).json(menu);
+  });
+
+  static createRestaurant = catchedAsync(async (req, res) => {
+    const { ownerId, imageRestaurant, nameRestaurant } = req.body;
+
+    if (!ownerId || !nameRestaurant) {
+      throw new Error("ownerId and nameRestaurant is required");
     }
 
     const newRestaurant = await Logic.createRestaurant({
-      owner,
+      ownerId,
       imageRestaurant,
       nameRestaurant,
     });
@@ -20,17 +48,17 @@ class Controller {
   });
 
   static createMenu = catchedAsync(async (req, res) => {
-    const { nameMenu, description, avaliableDays } = req.body;
+    const { ownerId, nameMenu, description, avaliableDays } = req.body;
 
     const { id } = req.params;
 
     if (!id) {
       throw new Error("id is required");
-    } else if (!nameMenu) {
-      throw new Error("nameMenu is required");
+    } else if (!nameMenu || !ownerId) {
+      throw new Error("nameMenu or ownerId is required");
     }
 
-    const newMenu = await Logic.createMenu(id, {
+    const newMenu = await Logic.createMenu(id, ownerId, {
       nameMenu,
       description,
       avaliableDays,

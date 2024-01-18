@@ -3,39 +3,70 @@ import MenusModel from "../models/mongoose/menus.ts";
 import { MenusTypes, Categories, Dishes } from "../types/menuTypes.ts";
 
 class Logic {
-    
   static getRestaurant = async (_id: string) => {
     const restaurant = await MenusModel.findById(_id);
-    return restaurant;
+
+    const itemRestaurant = {
+      idRestaurant: restaurant?._id,
+      nameRestaurant: restaurant?.nameRestaurant,
+      imageRestaurant: restaurant?.imageRestaurant,
+      associates: restaurant?.associates,
+      menus: restaurant?.menus?.map((menu) => {
+        return {
+          idMenu: menu._id,
+          nameMenu: menu.nameMenu,
+          available: menu.available,
+          dishes: menu.dishes,
+          avaliableDays: menu.avaliableDays,
+        };
+      }),
+    };
+
+    return itemRestaurant;
   };
 
-  static getMenus = async (_id: string, nameMenu?: string) => {
-    const restaurant = await MenusModel.findOne({
-      _id,
-      "menus.nameMenu": nameMenu,
-    });
-    return restaurant;
+  static getMenu = async (_id: string, idMenu?: string) => {
+    const restaurant = await MenusModel.findById(_id);
+
+    const itemMenu = restaurant?.menus?.find((menu) => menu._id == idMenu);
+
+    console.log(itemMenu);
+
+    return itemMenu;
   };
 
   static createRestaurant = async ({
-    owner,
+    ownerId,
     imageRestaurant,
     nameRestaurant,
   }: {
-    owner: string;
+    ownerId: string;
     imageRestaurant?: string;
     nameRestaurant: string;
   }) => {
     const restaurant = await MenusModel.create({
-      owner,
+      ownerId,
       imageRestaurant,
       nameRestaurant,
     });
     return restaurant;
   };
 
-  static createMenu = async (_id: string, body: MenusTypes) => {
+  static createMenu = async (
+    _id: string,
+    ownerId: string,
+    body: MenusTypes
+  ) => {
     try {
+      const verify = await MenusModel.findOne({
+        _id,
+        ownerId: ownerId,
+      });
+
+      if (!verify) {
+        throw new Error("Not found");
+      }
+
       const restaurant = await MenusModel.findByIdAndUpdate(
         _id,
         {

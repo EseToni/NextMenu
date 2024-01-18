@@ -2,6 +2,10 @@
 
 import React, { useState } from "react";
 
+import { useSession } from "next-auth/react";
+
+import { getSession } from "next-auth/react";
+
 import MenuApi from "@/common/utils/api/menuApi";
 
 import styles from "./modal.module.scss";
@@ -9,9 +13,12 @@ import styles from "./modal.module.scss";
 const ModalNewMenu: React.FC<ModalNewMenuProps> = ({ toggleModal }) => {
   const [nameValue, setNameValue] = useState("");
 
+  const { data: session } = useSession();
+
+
   const handleCreateMenu = () => {
     if (!nameValue) return;
-    MenuApi.createMenu(nameValue);
+    MenuApi.createMenu(nameValue, session?.user?.id);
     toggleModal();
   };
 

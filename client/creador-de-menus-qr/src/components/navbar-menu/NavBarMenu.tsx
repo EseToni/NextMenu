@@ -4,10 +4,8 @@ import Link from "next/link";
 
 import styles from "./navbar-menu.module.scss";
 
-import { SessionProviderCustom } from "@/common/providers/SessionProviderCustom";
+// import { SessionProviderCustom } from "@/common/providers/SessionProviderCustom";
 import AvatarNav from "../avatar-menu/AvatarNav";
-
-console.log("NavBarMenu");
 
 const NavBarMenu = () => {
   return (
@@ -46,9 +44,7 @@ const NavBarMenu = () => {
 
       <div>
         <h3>Mejora tu plan</h3>
-        <SessionProviderCustom>
-          <AvatarNav />
-        </SessionProviderCustom>
+        <AvatarNav />
       </div>
     </nav>
   );

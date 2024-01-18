@@ -8,7 +8,7 @@ const config = {
 };
 
 const scheme = {
-  owner: {
+  ownerId: {
     type: String,
     required: true,
   },

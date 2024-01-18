@@ -28,7 +28,7 @@ export interface Dishes {
 
 export interface MenusModelTypes {
   _id?: string;
-  owner: string;
+  ownerId: string;
   nameRestaurant: string;
   imageRestaurant?: string;
   associates?: Array<string>;

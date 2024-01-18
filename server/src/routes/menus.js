@@ -9,6 +9,10 @@ router.get("/", (_, res) => {
   });
 });
 
+router.get("/:id", Controller.getRestaurant);
+
+router.get("/menu/:id", Controller.getMenu);
+
 router.post("/", Controller.createRestaurant);
 
 router.post("/:id", Controller.createMenu);
