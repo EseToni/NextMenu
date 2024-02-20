@@ -1,6 +1,5 @@
 import styles from "./page.module.scss";
 
-
 import NavBar from "@/components/navbar/NavBar";
 import Intro from "@/components/intro/Intro";
 import BentoGrid from "@/components/bento-grid/BentoGrid";

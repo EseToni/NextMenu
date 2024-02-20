@@ -5,9 +5,9 @@ import React from "react";
 import { useParams } from "next/navigation";
 
 const MenuId = () => {
-  const { id } = useParams();
+  const { idRestaurant, idMenu} = useParams();
 
-  console.log(id);
+  console.log(idRestaurant, idMenu);
 
   return <div>soy una ruta</div>;
 };

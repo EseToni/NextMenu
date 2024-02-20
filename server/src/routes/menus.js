@@ -11,6 +11,8 @@ router.get("/", (_, res) => {
 
 router.get("/:id", Controller.getRestaurant);
 
+router.get("/all/:ownerId", Controller.getAllRestaurants);
+
 router.get("/menu/:id", Controller.getMenu);
 
 router.post("/", Controller.createRestaurant);

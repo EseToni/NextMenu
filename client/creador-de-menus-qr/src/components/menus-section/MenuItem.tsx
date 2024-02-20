@@ -1,4 +1,6 @@
+"use client"
 import React from "react";
+import { useRouter } from "next/navigation";
 
 import styles from "./menu-item.module.scss";
 
@@ -7,11 +9,17 @@ const MenuItem: React.FC<MenuItemProps> = ({
   availability,
   dishes,
   visibility,
+  idRestaurant,
+  idMenu,
 }) => {
+  const router = useRouter();
+  const handleEdit = () => {
+    router.push(`/editor/${idRestaurant}/${idMenu}`);
+  };
   return (
     <div className={styles.mainMenuItem} >
       <h4>{name}</h4>
-      <button>Editar</button>
+      <button onClick={handleEdit}>Editar</button>
       <div>
         <h4>{dishes}</h4>
         <h4>{availability}</h4>
@@ -29,4 +37,6 @@ interface MenuItemProps {
   dishes: number;
   availability: string;
   visibility: boolean;
+  idRestaurant: string;
+  idMenu: string;
 }

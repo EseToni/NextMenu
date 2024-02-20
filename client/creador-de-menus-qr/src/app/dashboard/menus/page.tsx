@@ -1,55 +1,38 @@
-import React from "react";
+"use client"
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
 
-import styles from "./menus.module.scss";
+import MenuApi from "@/common/utils/api/menuApi";
 
 import Dashborad from "../page";
-import MenuTable from "@/components/menus-section/MenuTable";
-import MenuItem from "@/components/menus-section/MenuItem";
-import ButtonNewMenu from "@/components/buttons/ButtonNewMenu";
 
-const Menus = () => {
-  const MOCKDATA = [
-    {
-      name: "Menu 1",
-      dishes: 5,
-      availability: "Todos los días",
-      visibility: true,
-      position: 1,
-    },
-    {
-      name: "Menu 2",
-      dishes: 2,
-      availability: "Todos los días",
-      visibility: true,
-      position: 2,
-    },
-  ];
+const MenuMain = () => {
+    const router = useRouter();
+    const session = getSession();
 
+    useEffect(() => {
+        if (!session) {
+            router.push("/login");
+        }
+        else {
+            session.then((res) => {
+                MenuApi.getAllRestaurants(res?.user.id).then((res) => {
+                    if (res.length === 0) {
+                        router.push("/dashboard/restaurante");
+                    }
+                    else {
+                        router.push(`/dashboard/menus/${res[0].idRestaurant}`);
+                    }
+                });
+            })
+        }
+    }, [session, router]);
   return (
     <Dashborad>
-      <div className={styles.mainMenus}>
-        <div className={styles.infoMenu}>
-          <h2>Menus</h2>
-          <div>
-            <button>Ver menu</button>
-            <ButtonNewMenu />
-          </div>
-        </div>
-        <hr />
-        <MenuTable>
-          {MOCKDATA.map((item) => (
-            <MenuItem
-              key={item.position}
-              name={item.name}
-              dishes={item.dishes}
-              availability={item.availability}
-              visibility={item.visibility}
-            />
-          ))}
-        </MenuTable>
-      </div>
+        <h1>Holas</h1>
     </Dashborad>
   );
 };
 
-export default Menus;
+export default MenuMain;

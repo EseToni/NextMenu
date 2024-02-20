@@ -25,6 +25,21 @@ class Logic {
     return itemRestaurant;
   };
 
+  static getAllRestaurants = async (ownerId: string) => {
+    const restaurants = await MenusModel.find({ ownerId });
+
+    const itemRestaurants = restaurants.map((restaurant) => {
+      return {
+        idRestaurant: restaurant._id,
+        nameRestaurant: restaurant.nameRestaurant,
+        imageRestaurant: restaurant.imageRestaurant,
+        associates: restaurant.associates,
+      };
+    });
+
+    return itemRestaurants;
+  };
+
   static getMenu = async (_id: string, idMenu?: string) => {
     const restaurant = await MenusModel.findById(_id);
 
@@ -64,7 +79,7 @@ class Logic {
       });
 
       if (!verify) {
-        throw new Error("Not found");
+        throw new Error("Not verify credentials");
       }
 
       const restaurant = await MenusModel.findByIdAndUpdate(

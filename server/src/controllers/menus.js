@@ -7,12 +7,24 @@ class Controller {
     const { id } = req.params;
 
     if (!id) {
-      throw new Error("id is required");
+      throw new Error("idRestaurant is required");
     }
 
     const restaurant = await Logic.getRestaurant(id);
 
     res.status(200).json(restaurant);
+  });
+
+  static getAllRestaurants = catchedAsync(async (req, res) => {
+    const { ownerId } = req.params;
+
+    if (!ownerId) {
+      throw new Error("ownerId is required");
+    }
+
+    const restaurants = await Logic.getAllRestaurants(ownerId);
+
+    res.status(200).json(restaurants);
   });
 
   static getMenu = catchedAsync(async (req, res) => {

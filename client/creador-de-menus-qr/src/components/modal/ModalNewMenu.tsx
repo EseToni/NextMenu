@@ -4,21 +4,23 @@ import React, { useState } from "react";
 
 import { useSession } from "next-auth/react";
 
-import { getSession } from "next-auth/react";
-
 import MenuApi from "@/common/utils/api/menuApi";
 
 import styles from "./modal.module.scss";
 
-const ModalNewMenu: React.FC<ModalNewMenuProps> = ({ toggleModal }) => {
+const ModalNewMenu: React.FC<ModalNewMenuProps> = ({ idRestaurant, toggleModal }) => {
   const [nameValue, setNameValue] = useState("");
-
+  const [restaurantValue, setRestaurantValue] = useState("");
   const { data: session } = useSession();
-
 
   const handleCreateMenu = () => {
     if (!nameValue) return;
-    MenuApi.createMenu(nameValue, session?.user?.id);
+    MenuApi.createMenu(nameValue, session?.user?.id, idRestaurant);
+    toggleModal();
+  };
+  const handleCreateRestaurant = () => {
+    if (!restaurantValue) return;
+    MenuApi.createRestaurant(restaurantValue, session?.user?.id);
     toggleModal();
   };
 
@@ -34,6 +36,18 @@ const ModalNewMenu: React.FC<ModalNewMenuProps> = ({ toggleModal }) => {
         />
       </label>
       <button onClick={handleCreateMenu}>Crear Menú</button>
+      <div>
+        <h2>Crear Restaurante</h2>
+        <label>
+          Nombre del Restaurante
+          <input
+            type="text"
+            value={restaurantValue}
+            onChange={(e) => setRestaurantValue(e.target.value)}
+          />
+        </label>
+        <button onClick={handleCreateRestaurant}>Crear Restuarante</button>
+      </div>
     </div>
   );
 };
@@ -41,5 +55,6 @@ const ModalNewMenu: React.FC<ModalNewMenuProps> = ({ toggleModal }) => {
 export default ModalNewMenu;
 
 interface ModalNewMenuProps {
+  idRestaurant: string;
   toggleModal: () => void;
 }
