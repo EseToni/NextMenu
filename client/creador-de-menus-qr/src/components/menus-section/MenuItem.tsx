@@ -14,7 +14,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
 }) => {
   const router = useRouter();
   const handleEdit = () => {
-    router.push(`/editor/${idRestaurant}/${idMenu}`);
+    router.push(`${idRestaurant}/${idMenu}`);
   };
   return (
     <div className={styles.mainMenuItem} >

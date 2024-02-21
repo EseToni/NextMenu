@@ -20,7 +20,9 @@ const CustomModal: React.FC<CustomModalProps> = ({
       {modalState && (
         <div className={styles.containerOverlay} onClick={handleOverlayClick}>
           <div className={styles.containerModal}>
-            <h3 className={styles.buttonClose}>X</h3>
+            <h3 className={styles.buttonClose} onClick={toggleModal}>
+              X
+            </h3>
             {children}
           </div>
         </div>

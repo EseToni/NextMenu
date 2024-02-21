@@ -1,0 +1,25 @@
+.mainMenuEditor {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    .menuContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 2rem;
+        width: 60%;
+        .menuEditorInfo {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .categoriesContainer{
+            width: 100%;
+        }
+    }
+}
