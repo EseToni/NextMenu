@@ -13,7 +13,7 @@ router.get("/:id", Controller.getRestaurant);
 
 router.get("/all/:ownerId", Controller.getAllRestaurants);
 
-router.get("/menu/:id", Controller.getMenu);
+router.get("/:idRestaurant/:idMenu", Controller.getMenu);
 
 router.post("/", Controller.createRestaurant);
 

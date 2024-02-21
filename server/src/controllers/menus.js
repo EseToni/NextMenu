@@ -2,6 +2,8 @@ import Logic from "../logic/menu.ts";
 
 import catchedAsync from "../utils/catchedAsync.js";
 
+import validateId from "../utils/ft_check_id.js";
+
 class Controller {
   static getRestaurant = catchedAsync(async (req, res) => {
     const { id } = req.params;
@@ -28,17 +30,15 @@ class Controller {
   });
 
   static getMenu = catchedAsync(async (req, res) => {
-    const { id } = req.params;
+    const { idRestaurant, idMenu } = req.params;
 
-    const { idMenu } = req.body;
-
-    if (!id) {
-      throw new Error("id is required");
+    if (!idRestaurant) {
+      throw new Error("idRestaurant is required");
     } else if (!idMenu) {
       throw new Error("idMenu is required");
     }
 
-    const menu = await Logic.getMenu(id, idMenu);
+    const menu = await Logic.getMenu(idRestaurant, idMenu);
 
     res.status(200).json(menu);
   });
@@ -81,20 +81,26 @@ class Controller {
 
   static createCategory = catchedAsync(async (req, res) => {
     try {
-      const { nameMenu, nameCategory, description } = req.body;
+      const { idMenu, nameCategory, description } = req.body;
 
       const { id } = req.params;
 
       if (!id) {
         throw new Error("_id restaurant is required");
-      } else if (!nameMenu || !nameCategory) {
-        throw new Error("nameMenu or nameCategory is required");
+      } else if (!idMenu || !nameCategory) {
+        throw new Error("idMenu or nameCategory is required");
+      } else if (!validateId(idMenu)) {
+        throw new Error("idMenu is not valid");
       }
 
-      const newCategory = await Logic.createCategory(id, nameMenu, {
+      const newCategory = await Logic.createCategory(id, idMenu, {
         nameCategory,
         description,
       });
+
+      if (!newCategory) {
+        throw new Error("Category not created");
+      }
 
       return res.status(201).json(newCategory);
     } catch (error) {
@@ -104,8 +110,8 @@ class Controller {
 
   static createDish = catchedAsync(async (req, res) => {
     const {
-      nameMenu,
-      nameCategory,
+      idMenu,
+      idCategory,
       nameDish,
       description,
       price,
@@ -118,13 +124,13 @@ class Controller {
 
     if (!id) {
       throw new Error("_id restaurant is required");
-    } else if (!nameMenu || !nameCategory || !nameDish || !price) {
+    } else if (!idMenu || !idCategory || !nameDish || !price) {
       throw new Error(
-        "nameMenu or nameCategory or nameDish or price is required"
+        "idMenu or idCategory or nameDish or price is required"
       );
     }
 
-    const newDish = await Logic.createDish(id, nameMenu, nameCategory, {
+    const newDish = await Logic.createDish(id, idMenu, idCategory, {
       nameDish,
       description,
       price,

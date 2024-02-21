@@ -99,13 +99,13 @@ class Logic {
 
   static createCategory = async (
     _id: string,
-    nameMenu: string,
+    idMenu: string,
     body: Categories
   ) => {
     const restaurant = await MenusModel.findOneAndUpdate(
       {
         _id,
-        "menus.nameMenu": nameMenu,
+        "menus._id": idMenu,
       },
       {
         $push: {
@@ -119,14 +119,14 @@ class Logic {
 
   static createDish = async (
     _id: string,
-    nameMenu: string,
-    nameCategory: string,
+    idMenu: string,
+    idCategory: string,
     body: Dishes
   ) => {
     const restaurant = await MenusModel.findOneAndUpdate(
       {
         _id,
-        "menus.nameMenu": nameMenu,
+        "menus._id": idMenu,
       },
       {
         $push: {
@@ -136,8 +136,12 @@ class Logic {
       {
         new: true,
         arrayFilters: [
-          { "menu.nameMenu": nameMenu },
-          { "category.nameCategory": nameCategory },
+          {
+            "menu._id": idMenu,
+          },
+          {
+            "category._id": idCategory,
+          },
         ],
       }
     );
