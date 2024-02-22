@@ -45,3 +45,51 @@
         cursor: pointer;
     }
 }
+
+.mainModalDish{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    gap: 2rem;
+    background-color: white;
+    >form{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+
+        .mainScrollable{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            gap: 1rem;
+
+            .formGrid{
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-template-rows: 1fr;
+                gap: 1rem;
+                .gridLeftCol{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    gap: 1rem;
+                    >label{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+                        gap: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}

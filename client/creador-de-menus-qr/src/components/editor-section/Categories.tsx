@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import styles from "./categories.module.scss";
 import CustomModal from "../modal/custom/CustomModal";
 import ModalCategory from "../modal/ModalCategory";
+import ModalDish from "../modal/ModalDish";
 
 const Categories: React.FC<CategoriesProps> = ({
   children,
@@ -15,10 +16,14 @@ const Categories: React.FC<CategoriesProps> = ({
   _idRestaurant,
 }) => {
   const [open, setOpen] = useState(true);
-  const [modalState, setModalState] = useState(false);
+  const [modalCategory, setmodalCategory] = useState(false);
+  const [modalDish, setmodalDish] = useState(false);
 
-  const toggleModal = () => {
-    setModalState(!modalState);
+  const toggleModalCategory = () => {
+    setmodalCategory(!modalCategory);
+  };
+  const toggleModalDish = () => {
+    setmodalDish(!modalDish);
   };
   const handleOpen = () => {
     setOpen(!open);
@@ -42,17 +47,20 @@ const Categories: React.FC<CategoriesProps> = ({
         <div className={styles.mainContainerChildren}>
           {children}
           <div className={styles.containerButtons}>
-            <button>Nuevo plato</button>
-            <button onClick={toggleModal}>Nueva categoria</button>
+            <button onClick={toggleModalDish}>Nuevo plato</button>
+            <button onClick={toggleModalCategory}>Nueva categoria</button>
           </div>
         </div>
       </div>
-      <CustomModal modalState={modalState} toggleModal={toggleModal}>
+      <CustomModal modalState={modalCategory} toggleModal={toggleModalCategory}>
         <ModalCategory
           _idCategory={_idCategory}
           _idMenu={_idMenu}
           _idRestaurant={_idRestaurant}
         />
+      </CustomModal>
+      <CustomModal modalState={modalDish} toggleModal={toggleModalDish}>
+        <ModalDish />
       </CustomModal>
     </>
   ) : (
