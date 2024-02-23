@@ -60,7 +60,11 @@ const Categories: React.FC<CategoriesProps> = ({
         />
       </CustomModal>
       <CustomModal modalState={modalDish} toggleModal={toggleModalDish}>
-        <ModalDish />
+        <ModalDish
+          idCategory={_idCategory}
+          idMenu={_idMenu}
+          idRestaurant={_idRestaurant}
+        />
       </CustomModal>
     </>
   ) : (

@@ -13,7 +13,7 @@ export interface ICategory {
   dishes: IDish[];
 }
 export interface IDish {
-  _id: string;
+  _id?: string;
   nameDish: string;
   price: number;
   description: string;

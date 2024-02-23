@@ -2,7 +2,10 @@ import {
   API_URL_MENU,
   API_URL_MENU_ALL,
   API_URL_MENU_CATEGORY,
+  API_URL_MENU_DISH,
 } from "@/common/API_URL";
+
+import { IDish } from "@/common/types/IMenu";
 
 class MenuApi {
   static async getAllRestaurants(ownerId: string) {
@@ -53,6 +56,31 @@ class MenuApi {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ idMenu: _idMenu, nameCategory, description }),
+    });
+    return await response.json();
+  }
+  static async createDish(
+    idRestaurant: string,
+    idMenu: string,
+    idCategory: string,
+    dish: IDish
+  ) {
+    const response = await fetch(`${API_URL_MENU_DISH}${idRestaurant}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idMenu,
+        idCategory,
+        nameDish: dish.nameDish,
+        price: dish.price,
+        description: dish.description,
+        available: dish.available,
+        allergens: dish.allergens,
+        labels: dish.labels,
+        image: dish.image,
+      }),
     });
     return await response.json();
   }

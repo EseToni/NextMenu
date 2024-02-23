@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
 import MenuApi from "@/common/utils/api/menuApi";
@@ -16,16 +16,17 @@ const MenuId = () => {
   const [menu, setMenu] = useState<IMenu | null>(null);
   const { idRestaurant, idMenu } = useParams();
 
-  useEffect(() => {
-    const fetchMenu = async () => {
-      const response = await MenuApi.getMenu(
-        idRestaurant as string,
-        idMenu as string
-      );
-      setMenu(response);
-    };
-    fetchMenu();
+  const fetchMenu = useCallback(async () => {
+    const response = await MenuApi.getMenu(
+      idRestaurant as string,
+      idMenu as string
+    );
+    setMenu(response);
   }, [idRestaurant, idMenu]);
+  
+  useEffect(() => {
+    fetchMenu();
+  }, [idRestaurant, idMenu, fetchMenu]);
 
   console.log(menu);
 
